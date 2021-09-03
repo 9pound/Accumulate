@@ -1,0 +1,3 @@
+# 深入理解kafaka
+
+kafka 使用zookeeper来维护集群成员的信息、每个broker都有一个唯一的标识符

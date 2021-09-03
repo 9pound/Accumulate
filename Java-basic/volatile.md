@@ -46,6 +46,8 @@ volatile 是轻量级的synchronized
 
 
 
+缓存一致性协议：每个处理器通过嗅探在总线上传播的数据来检查自己缓存的值是不是过期了，
+
 #### 原子性、可见性、有序性
 
 
@@ -54,7 +56,13 @@ volatile 是轻量级的synchronized
 
 FAQ
 
-synchronized 和 volatile 分别是如何保证有序性的？
+#### volatile如何实现可见性？
+
+对volatile变量进行写操作的时候，会加一个lock前缀的指令。
+
+#### volatile 如何实现有序性的？
+
+#### 双重校验锁的单例模式为什么要用volatile变量？
 
 
 

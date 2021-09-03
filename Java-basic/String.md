@@ -22,6 +22,10 @@ public final class String
 
 # String常用方法
 
+
+
+### 长度
+
 ##### **length()**
 
 ```java
@@ -37,6 +41,16 @@ public final class String
         return value.length;
     }
 ```
+
+##### **isEmpty()**
+
+```
+public boolean isEmpty() {
+    return value.length == 0;
+}
+```
+
+### 比较
 
 ##### **equals()**
 
@@ -141,6 +155,57 @@ public final class String
     }
 ```
 
+##### contains()
+
+```
+public boolean contains(CharSequence s) {
+    return indexOf(s.toString()) > -1;
+}
+```
+
+##### **startsWith()**
+
+##### **endsWith()**
+
+### 连接
+
+##### **concat()**
+
+```java
+/**
+     * Concatenates the specified string to the end of this string.
+     * <p>
+     * If the length of the argument string is {@code 0}, then this
+     * {@code String} object is returned. Otherwise, a
+     * {@code String} object is returned that represents a character
+     * sequence that is the concatenation of the character sequence
+     * represented by this {@code String} object and the character
+     * sequence represented by the argument string.<p>
+     * Examples:
+     * <blockquote><pre>
+     * "cares".concat("s") returns "caress"
+     * "to".concat("get").concat("her") returns "together"
+     * </pre></blockquote>
+     *
+     * @param   str   the {@code String} that is concatenated to the end
+     *                of this {@code String}.
+     * @return  a string that represents the concatenation of this object's
+     *          characters followed by the string argument's characters.
+     */
+    public String concat(String str) {
+        int otherLen = str.length();
+        if (otherLen == 0) {
+            return this;
+        }
+        int len = value.length;
+        char buf[] = Arrays.copyOf(value, len + otherLen);
+        str.getChars(buf, len);
+        return new String(buf, true);
+    }
+```
+
+
+
 ##### **join()**
 
 ```java
@@ -180,6 +245,8 @@ public final class String
         return joiner.toString();
     }
 ```
+
+### 分隔
 
 
 
@@ -233,6 +300,61 @@ public final class String
 ```
 
 
+
+
+
+##### **subString()**
+
+```java
+/**
+     * Returns a string that is a substring of this string. The
+     * substring begins at the specified {@code beginIndex} and
+     * extends to the character at index {@code endIndex - 1}.
+     * Thus the length of the substring is {@code endIndex-beginIndex}.
+     * <p>
+     * Examples:
+     * <blockquote><pre>
+     * "hamburger".substring(4, 8) returns "urge"
+     * "smiles".substring(1, 5) returns "mile"
+     * </pre></blockquote>
+     *
+     * @param      beginIndex   the beginning index, inclusive.
+     * @param      endIndex     the ending index, exclusive.
+     * @return     the specified substring.
+     * @exception  IndexOutOfBoundsException  if the
+     *             {@code beginIndex} is negative, or
+     *             {@code endIndex} is larger than the length of
+     *             this {@code String} object, or
+     *             {@code beginIndex} is larger than
+     *             {@code endIndex}.
+     */
+    public String substring(int beginIndex, int endIndex) {
+        if (beginIndex < 0) {
+            throw new StringIndexOutOfBoundsException(beginIndex);
+        }
+        if (endIndex > value.length) {
+            throw new StringIndexOutOfBoundsException(endIndex);
+        }
+        int subLen = endIndex - beginIndex;
+        if (subLen < 0) {
+            throw new StringIndexOutOfBoundsException(subLen);
+        }
+        return ((beginIndex == 0) && (endIndex == value.length)) ? this
+                : new String(value, beginIndex, subLen);
+    }
+```
+
+##### split()
+
+```
+public String[] split(String regex) {
+    return split(regex, 0);
+}
+```
+
+
+
+### 替换
 
 ##### **replace()**
 
@@ -296,80 +418,12 @@ public final class String
 
 
 
-##### **subString()**
+### 特殊
 
-```java
-/**
-     * Returns a string that is a substring of this string. The
-     * substring begins at the specified {@code beginIndex} and
-     * extends to the character at index {@code endIndex - 1}.
-     * Thus the length of the substring is {@code endIndex-beginIndex}.
-     * <p>
-     * Examples:
-     * <blockquote><pre>
-     * "hamburger".substring(4, 8) returns "urge"
-     * "smiles".substring(1, 5) returns "mile"
-     * </pre></blockquote>
-     *
-     * @param      beginIndex   the beginning index, inclusive.
-     * @param      endIndex     the ending index, exclusive.
-     * @return     the specified substring.
-     * @exception  IndexOutOfBoundsException  if the
-     *             {@code beginIndex} is negative, or
-     *             {@code endIndex} is larger than the length of
-     *             this {@code String} object, or
-     *             {@code beginIndex} is larger than
-     *             {@code endIndex}.
-     */
-    public String substring(int beginIndex, int endIndex) {
-        if (beginIndex < 0) {
-            throw new StringIndexOutOfBoundsException(beginIndex);
-        }
-        if (endIndex > value.length) {
-            throw new StringIndexOutOfBoundsException(endIndex);
-        }
-        int subLen = endIndex - beginIndex;
-        if (subLen < 0) {
-            throw new StringIndexOutOfBoundsException(subLen);
-        }
-        return ((beginIndex == 0) && (endIndex == value.length)) ? this
-                : new String(value, beginIndex, subLen);
-    }
+##### intern()
+
 ```
-
-##### **concat()**
-
-```java
-/**
-     * Concatenates the specified string to the end of this string.
-     * <p>
-     * If the length of the argument string is {@code 0}, then this
-     * {@code String} object is returned. Otherwise, a
-     * {@code String} object is returned that represents a character
-     * sequence that is the concatenation of the character sequence
-     * represented by this {@code String} object and the character
-     * sequence represented by the argument string.<p>
-     * Examples:
-     * <blockquote><pre>
-     * "cares".concat("s") returns "caress"
-     * "to".concat("get").concat("her") returns "together"
-     * </pre></blockquote>
-     *
-     * @param   str   the {@code String} that is concatenated to the end
-     *                of this {@code String}.
-     * @return  a string that represents the concatenation of this object's
-     *          characters followed by the string argument's characters.
-     */
-    public String concat(String str) {
-        int otherLen = str.length();
-        if (otherLen == 0) {
-            return this;
-        }
-        int len = value.length;
-        char buf[] = Arrays.copyOf(value, len + otherLen);
-        str.getChars(buf, len);
-        return new String(buf, true);
-    }
+public native String intern();
 ```
 
 
@@ -382,6 +436,4 @@ public final class String
 
 ##### **lastIndexOf()**
 
-##### **startsWith()**
-
-##### **endsWith()**
+##### 

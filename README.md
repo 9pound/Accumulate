@@ -78,25 +78,28 @@ transient、instanceof、volatile、synchronized、final、static、const 原理
 
 Collection和Collections区别
 
-Arrays.asList获得的List使用时需要注意什么
+List、Set、Map、Queue、Stack区别
 
-Collection、List、Set、Map、Queue、Stack
+Arrays.asList获得的List使用时需要注意什么
 
 ArrayList和LinkedList和Vector的区别？
 
-HashMap与HashTable的区别？
+SynchronizedList和Vector的区别？
+
+HashMap、TreeMap、ConcurrentHashMap
+
+HashMap、HashTable、ConcurrentHashMap区别？
+
+HashSet、TreeSet
 
 HashMap与HashSet的区别？
 
-ConcurrentHashMap和HashTable的区别？
+不同版本的JDK中HashMap的实现的区别以及原因？
 
-HashSet如何保证元素不重复？
+Set如何保证元素不重复？
 
-SynchronizedList和Vector的区别
-
-HashMap、HashTable、ConcurrentHashMap区别、
-
-不同版本的JDK中HashMap的实现的区别以及原因
+- HashSet
+- TreeSet
 
 CopyOnWriteArrayList、 
 
@@ -176,7 +179,7 @@ List
 
 List<?>和List
 
-#### 单元测试
+#### 单元测
 
 junit、mock、mockito、内存数据库（h2）
 
@@ -266,23 +269,25 @@ HashSet & LinkedHashSet & TreeSet
 
 #### 线程
 
-线程与进程的区别
+- 线程与进程的区别
 
-线程的实现
+- 线程的实现
 
-线程的声明周期
+- 线程的声明周期
 
-优先级
+- 优先级
 
-线程调度
+- 线程调度
 
-创建线程的多种方式
+- 创建线程的多种方式
 
-守护线程
+- 守护线程
+
 
 **Thread**
 
 - sleep()方法和wait方法的区别和共同点？
+- 常用的方法
 
 **Runnable**
 
@@ -290,9 +295,12 @@ HashSet & LinkedHashSet & TreeSet
 
 - Runnable接口和Callable接口的区别
 
-**监视器**
+#### 监视器
 
-##### synchronized
+- 什么是监视器
+- 特性？
+
+#### final变量
 
 #### volatile
 
@@ -304,21 +312,58 @@ HashSet & LinkedHashSet & TreeSet
 
 - 有了symchronized为什么还需要volatile
 
-**final变量**
+- 实现原理
 
-**线程局部变量（ThreadLocal）**
+- 同步阻塞
+
+#### ReentrantLock
+
+- 条件对象
+- await()/single()/singleAll()方法
+
+##### ReentrantReadWriteLock(读/写锁)
+
+### Synchronized
+
+#### **线程局部变量（ThreadLocal）**
 
 - TheadLoacl内存泄漏问题
 
-##### **ReentrantLock**
+#### 
 
-- 锁测试与超时
+#### 线程安全集合
 
-**读写锁ReentrantReadWriteLock**
+ConcurrentHashMap
 
-**ReentrantReadWriteLock**
+CopyOnWriteArrayList
 
-**阻塞队列**
+ConcurrentLinkedQueue
+
+ConcurrentSkipListMap
+
+ConcurrentSkipListSet
+
+ConcurrentLinkedQueue：非阻塞队列(CAS)
+
+BlockingQueue：阻塞队列 (锁)
+
+- 常用的方法
+- LinkedBlockingQueue 容量没有上限
+- ArrayBlockingQueue 在构造时需要指定容量，还可以指定是否需要公平性，若设置了公平参数，那么等待时间长的线程会优先得到处理
+
+- LinkedBlockingDeque 双端队列
+- PriorityBlockQueue 优先级队列，元素按优先级顺序被移除，没有容量上限
+
+- Delayed接口 元素只有在延迟用完的情况下才能从DelayQueue中移除
+  - 实现DelayQueue
+- TransferQueue接口 允许生产者线程等待，直到消费者准备就绪可以接受一个元素
+  - 实现LinkedTransferQueue
+
+#### 同步包装器
+
+Collections.synchronizedList()
+
+Collections.synchronizedMap()
 
 **死锁**
 
@@ -328,7 +373,9 @@ HashSet & LinkedHashSet & TreeSet
 
 **原子类、java.util.concurrent.atomic包**
 
-**线程安全集合**
+
+
+
 
 #### 执行器
 
@@ -996,37 +1043,17 @@ h2
 
 #### redis
 
-Redis是什么？与memcached有什么区别？
+数据结构（常用命令）9种
 
-Redis的五种数据结构(STRING、LIST、SET、HASH、ZSET)及常用命令
+持久化（RDB&AOF）
 
-一个字符串类型的值能存储最大容量是多少？512M
+主从复制
 
-Redis的事务特性和流水线特性  
+事务（MULTI&EXEC）
 
-Redis 是单进程单线程的？
+高可用（主从、哨兵、集群）
 
-redis 过期键的删除策略？
-
-Redis 的回收策略（淘汰策略）?
-
-Redis key 的过期时间和永久有效分别怎么设置？
-
-Redis如何做持久化的？快照、只追加文件
-
-Redis的同步机制了解么？主从复制特性（避免对主服务器进行集中式访问）
-
-同时使用复制和持久化的好处和坏处？如何去选择适合自己的持久化选项和复制选项？
-
-使用过 Redis 做异步队列么，你是怎么用的？
-
-使用过Redis分布式锁么，它是什么回事？
-
-维护数据安全以及应对系统故障的方法？
-
-假如 Redis 里面有 1 亿个 key，其中有 10w 个 key 是以某个固定的已知的前缀开头的，如果将它们全部找出来？
-
-如果有大量的 key 需要设置同一时间过期，一般需要注意什么？
+应用（分布式锁&延时队列)
 
 [参考](https://blog.csdn.net/Design407/article/details/103242874?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.edu_weight&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.edu_weight)
 

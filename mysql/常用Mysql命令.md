@@ -34,7 +34,7 @@ show databases
 6、选择数据库
 
 ```
-user school；
+use school；
 ```
 
 7、显示建库语句
@@ -60,8 +60,6 @@ show create table student;
 ```
 show columns from students;
 ```
-
-
 
 ## DDL
 

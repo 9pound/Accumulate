@@ -28,6 +28,10 @@
 
 作用：一个给定的Channel的IO操作都是由相同的Thread执行的，消除了对于同步的需要
 
+## EventLoopGroup
+
+EventLoopGroup负责为每个新创建的Channel分配一个EventLoop（一般顺序循环分配）
+
 ## ChannelFuture接口：
 
 netty中所有的IO操作都是异步的，ChannelFuture用于在之后的某个时间点确定结果。
@@ -93,6 +97,8 @@ netty以适配器的形式提供了大量默认的ChannelHandler实现
 **本质**：网络配置的容器，将一个进程绑定到某个指定的端口，或者将一个进程连接到另一个运行在某个指定主机的指定端口上的进程
 
 **引导的类型有两种**：客户端，服务端
+
+​	Bootstrap 和 ServerBootstrap
 
 **区别**：
 
