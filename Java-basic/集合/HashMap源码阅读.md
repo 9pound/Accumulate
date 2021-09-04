@@ -1,12 +1,12 @@
 # HashMap源码阅读
 
-**类声明**
+### **类声明**
 
 ```java
 public class HashMap<K,V> extends AbstractMap<K,V> implements Map<K,V>, Cloneable, Serializable
 ```
 
-**成员变量**
+### **成员变量**
 
 ```java
 private static final long serialVersionUID = 362498820763181265L;
@@ -37,13 +37,13 @@ final float loadFactor;
 
 ```
 
-**构造方法**
+### **构造方法**
 
 ```
 
 ```
 
-**内部数据结构**
+### **内部数据结构**
 
 数组 + 链表红黑树
 
@@ -106,9 +106,7 @@ static class Node<K,V> implements Map.Entry<K,V> {
 }
 ```
 
-
-
-**Hash函数**
+### **Hash函数**
 
 ```java
 static final int hash(Object key) {
@@ -117,10 +115,28 @@ static final int hash(Object key) {
     }
 ```
 
-**HashMap的数据插入原理**
+### put方法
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/2020031712385760.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3poZW5nd2FuZ3p3,size_16,color_FFFFFF,t_70)
 
 ```java
- final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
+/**
+ * Associates the specified value with the specified key in this map.
+ * If the map previously contained a mapping for the key, the old
+ * value is replaced.
+ *
+ * @param key key with which the specified value is to be associated
+ * @param value value to be associated with the specified key
+ * @return the previous value associated with <tt>key</tt>, or
+ *         <tt>null</tt> if there was no mapping for <tt>key</tt>.
+ *         (A <tt>null</tt> return can also indicate that the map
+ *         previously associated <tt>null</tt> with <tt>key</tt>.)
+ */
+public V put(K key, V value) {
+    return putVal(hash(key), key, value, false, true);
+}
+
+final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
                    boolean evict) {
         Node<K,V>[] tab; 
      	Node<K,V> p; 
@@ -174,9 +190,11 @@ static final int hash(Object key) {
         afterNodeInsertion(evict);
         return null;
     }
+
+
 ```
 
-**HashMap的get方法**
+### get方法
 
 ```java
    public V get(Object key) {
@@ -216,9 +234,7 @@ static final int hash(Object key) {
 // 不同的hash码可能会被散列到同一个位置
 ```
 
-
-
-**HashMap的扩容的原理**
+### 扩容的原理
 
 ```java
 // 主要是干两件事
@@ -308,6 +324,16 @@ final Node<K,V>[] resize() {
         return newTab;
     }
 ```
+
+
+
+keySet()
+
+values()
+
+entrySet()
+
+
 
 
 
