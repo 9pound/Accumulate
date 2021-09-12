@@ -56,7 +56,7 @@ public void run() {
 ### sleep()：
 
 ```java
-public static native void yield();
+public static native void sleep(long millis) throws InterruptedException;
 ```
 
 ### wait()：
