@@ -75,9 +75,10 @@ ELSE salary END;
 
 如下的几种否定形式不能用到索引：
 
-- <>
-- !=
+- != & <>
 - NOT IN
+- NOT LIKE
+- NOT EXTSTS
 
 ```text
 SELECT *
