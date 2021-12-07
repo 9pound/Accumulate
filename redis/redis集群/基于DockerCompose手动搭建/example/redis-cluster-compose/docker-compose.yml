@@ -1,0 +1,77 @@
+# 描述 Compose 文件的版本信息
+version: "3"
+
+# 定义服务，可以多个
+services:
+  redis-6371: # 服务名称
+    image: redis:5.0.0 # 创建容器时所需的镜像
+    container_name: redis-6371 # 容器名称
+    restart: always # 容器总是重新启动
+    network_mode: "host" # host 网络模式
+    volumes: # 数据卷，目录挂载
+      - ~/redis-cluster-compose/redis-6371/conf/redis.conf:/usr/local/etc/redis/redis.conf
+      - ~/redis-cluster-compose/redis-6371/data:/data
+    command: redis-server /usr/local/etc/redis/redis.conf # 覆盖容器启动后默认执行的命令
+  redis-6372: # 服务名称
+    image: redis:5.0.0 # 创建容器时所需的镜像
+    container_name: redis-6372 # 容器名称
+    restart: always # 容器总是重新启动
+    network_mode: "host" # host 网络模式
+    volumes: # 数据卷，目录挂载
+      - ~/redis-cluster-compose/redis-6372/conf/redis.conf:/usr/local/etc/redis/redis.conf
+      - ~/redis-cluster-compose/redis-6372/data:/data
+    command: redis-server /usr/local/etc/redis/redis.conf # 覆盖容器启动后默认执行的命令    
+  redis-6373: # 服务名称
+    image: redis:5.0.0 # 创建容器时所需的镜像
+    container_name: redis-6373 # 容器名称
+    restart: always # 容器总是重新启动
+    network_mode: "host" # host 网络模式
+    volumes: # 数据卷，目录挂载
+      - ~/redis-cluster-compose/redis-6373/conf/redis.conf:/usr/local/etc/redis/redis.conf
+      - ~/redis-cluster-compose/redis-6373/data:/data
+    command: redis-server /usr/local/etc/redis/redis.conf # 覆盖容器启动后默认执行的命令
+  redis-6374: # 服务名称
+    image: redis:5.0.0 # 创建容器时所需的镜像
+    container_name: redis-6374 # 容器名称
+    restart: always # 容器总是重新启动
+    network_mode: "host" # host 网络模式
+    volumes: # 数据卷，目录挂载
+      - ~/redis-cluster-compose/redis-6374/conf/redis.conf:/usr/local/etc/redis/redis.conf
+      - ~/redis-cluster-compose/redis-6374/data:/data
+    command: redis-server /usr/local/etc/redis/redis.conf # 覆盖容器启动后默认执行的命令
+  redis-6375: # 服务名称
+    image: redis:5.0.0 # 创建容器时所需的镜像
+    container_name: redis-6375 # 容器名称
+    restart: always # 容器总是重新启动
+    network_mode: "host" # host 网络模式
+    volumes: # 数据卷，目录挂载
+      - ~/redis-cluster-compose/redis-6375/conf/redis.conf:/usr/local/etc/redis/redis.conf
+      - ~/redis-cluster-compose/redis-6375/data:/data
+    command: redis-server /usr/local/etc/redis/redis.conf # 覆盖容器启动后默认执行的命令
+  redis-6376: # 服务名称
+    image: redis:5.0.0 # 创建容器时所需的镜像
+    container_name: redis-6376 # 容器名称
+    restart: always # 容器总是重新启动
+    network_mode: "host" # host 网络模式
+    volumes: # 数据卷，目录挂载
+      - ~/redis-cluster-compose/redis-6376/conf/redis.conf:/usr/local/etc/redis/redis.conf
+      - ~/redis-cluster-compose/redis-6376/data:/data
+    command: redis-server /usr/local/etc/redis/redis.conf # 覆盖容器启动后默认执行的命令    
+  redis-6377: # 服务名称
+    image: redis:5.0.0 # 创建容器时所需的镜像
+    container_name: redis-6377 # 容器名称
+    restart: always # 容器总是重新启动
+    network_mode: "host" # host 网络模式
+    volumes: # 数据卷，目录挂载
+      - ~/redis-cluster-compose/redis-6377/conf/redis.conf:/usr/local/etc/redis/redis.conf
+      - ~/redis-cluster-compose/redis-6377/data:/data
+    command: redis-server /usr/local/etc/redis/redis.conf # 覆盖容器启动后默认执行的命令
+  redis-6378: # 服务名称
+    image: redis:5.0.0 # 创建容器时所需的镜像
+    container_name: redis-6378 # 容器名称
+    restart: always # 容器总是重新启动
+    network_mode: "host" # host 网络模式
+    volumes: # 数据卷，目录挂载
+      - ~/redis-cluster-compose/redis-6378/conf/redis.conf:/usr/local/etc/redis/redis.conf
+      - ~/redis-cluster-compose/redis-6378/data:/data
+    command: redis-server /usr/local/etc/redis/redis.conf # 覆盖容器启动后默认执行的命令
