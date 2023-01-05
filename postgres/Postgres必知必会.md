@@ -2,6 +2,22 @@
 
 
 
+
+
+### 约束
+
+#### 主键
+
+#### 外键
+
+#### 唯一约束
+
+#### 非空约束
+
+#### 检查约束
+
+#### 排他约束
+
 ### 修改表
 
 #### 添加列
@@ -65,13 +81,66 @@ ALTER TABLE old_tab_name TO new_tab_name;
 
 
 
+### 函数
+
+#### 序列函数
+
+#### 条件函数
 
 
 
+#### 格式化函数
+
+##### to_char()
+
+```postgresql
+select to_char(now(),'yyyymmdd');
+select to_char(now(),'yyyymmdd hh:mi:ss');
+```
+
+##### to_date()
+
+##### to_number()
+
+##### to_timestamp()
+
+#### 字符串函数
+
+##### ||
+
+##### length()
+
+##### reverse()
+
+##### lower()
+
+##### upper()
+
+##### position()
+
+##### substring()
+
+##### substr
+
+##### left()
+
+##### right()
+
+##### trim()
+
+##### concat()
+
+##### repeat()
+
+##### replace()
 
 
 
+最
 
+
+
+## 可重复执行脚本示例
 
 
 
