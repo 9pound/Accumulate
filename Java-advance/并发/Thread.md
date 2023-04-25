@@ -1,5 +1,17 @@
 # Thread
 
+### 概述：
+
+线程的抽象
+
+
+
+每个线程都注册了它自己，确实有一个对他的引用，在它的任务退出其run()并死亡之前，垃圾回收器无法清除它（java编程思想：656）
+
+
+
+线程中的异常不能跨线程传播，必须在本地处理所有任务内部产生的异常。
+
 ### start()：
 
 ```java
@@ -55,6 +67,8 @@ public void run() {
 
 ### sleep()：
 
+休眠：使任务中止执行给定的时间，睡眠（即阻塞），线程调度器可以切换到另一个线程，进而驱动另一个任务
+
 ```java
 public static native void sleep(long millis) throws InterruptedException;
 ```
@@ -67,9 +81,14 @@ public static native void sleep(long millis) throws InterruptedException;
 public final native void wait(long timeout) throws InterruptedException;
 ```
 
-### join()：
+### join()：等待指定线程终止
 
-等待终止指定线程
+- 等待一段时间直到第二个线程结束才继续执行（当前线程将被挂起，直到目标线程结束才恢复）
+
+- 等待终止指定线程
+
+- 如果join的线程，被中断或者是正常结束。两个线程将一同结束
+
 
 ```java
 public final synchronized void join(long millis)
@@ -122,25 +141,77 @@ public final void join() throws InterruptedException {
 }
 ```
 
-### yield()：
+### yield()：让步
 
-使当前线程从执行状态（运行状态）变为可执行态，即使刚刚放弃了执行的权利, 也可能下一次就被调度回来了.
+- 使当前线程从执行状态（运行状态）变为可执行态
+- 建议让具有相同有限级的其他线程可以运行
+- 只是一个暗示，没有任何机制保证它将被采纳，即使刚刚放弃了执行的权利, 也可能下一次就被调度回来了.
 
 ```
 public static native void yield();
 ```
 
-interrupt：
+### interrupt()：
 
-用来请求终止线程，将中断状态设置为true
+- 用来请求终止线程，将中断状态设置为true
 
-interrupted：
+```java
+public void interrupt() {
+    if (this != Thread.currentThread()) {
+        checkAccess();
 
-静态方法，检测当前线程是否被中断，清除该线程的中断状态，将当前线程的中断状态重置为FALSE
+        // thread may be blocked in an I/O operation
+        synchronized (blockerLock) {
+            Interruptible b = blocker;
+            if (b != null) {
+                interrupted = true;
+                interrupt0();  // inform VM of interrupt
+                b.interrupt(this);
+                return;
+            }
+        }
+    }
+    interrupted = true;
+    // inform VM of interrupt
+    interrupt0();
+}
+```
 
-isInterrupted：
+### isInterrupted()：
 
-检测当前线程是否被中断，不改变中断状态
+- 检测当前线程是否被中断，不改变中断状态
+- 即使该线程被中断过，调用该对象的isInterrupted()依旧会返回false
+
+```java
+public boolean isInterrupted() {
+    return interrupted;
+}
+```
+
+### static interrupted()：
+
+- 静态方法，检测当前线程是否被中断，清除该线程的中断状态，将当前线程的中断状态重置为false
+
+```java
+public static boolean interrupted() {
+    Thread t = currentThread();
+    boolean interrupted = t.interrupted;
+    // We may have been interrupted the moment after we read the field,
+    // so only clear the field if we saw that it was set and will return
+    // true; otherwise we could lose an interrupt.
+    if (interrupted) {
+        t.interrupted = false;
+        clearInterruptEvent();
+    }
+    return interrupted;
+}
+```
+
+
+
+
+
+
 
 currentThread()：
 
@@ -161,6 +232,12 @@ setDaemon()
 Thread.join() :当前线程A等待Thread线程终止之后才从thread.join()，返回
 
 
+
+### 异常捕获
+
+```
+UncaughtExceptionHandler
+```
 
 ## FAQ
 

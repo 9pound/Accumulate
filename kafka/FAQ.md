@@ -2,6 +2,39 @@
 
 
 
+
+
+### 生产者
+
+Api 
+
+KafkaProducer
+
+- topic
+- partition
+- key
+- value
+
+ProducerRecord
+
+
+
+分区方法、序列化器、
+
+二进制连接协议
+
+
+
+
+
+消息是怎么重试的？ 
+
+生产者怎么重试？
+
+消费者怎么重试？
+
+
+
 ![image-20210825170845590](E:\Accumulate\kafka\FAQ.assets\image-20210825170845590.png)
 
 

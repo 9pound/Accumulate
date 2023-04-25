@@ -107,17 +107,22 @@ temporalAdjuster方法
 
 DateTimeFormatter
 
-以一定格式创建代表特定日期或时间的字符串
+- 以一定格式创建代表特定日期或时间的字符串
 
-线程安全
-
-ofPattern方法
-
-Locale
+- 线程安全
 
 
-
-
+```
+// 日期格式化字符串
+String dateStr = date.format(DateTimeFormatter.ISO_LOCAL_DATE);
+// 字符串转日期
+LocalDate parse = LocalDate.parse("2022-03-18", DateTimeFormatter.ISO_LOCAL_DATE);
+// 自定义格式
+DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+String dateStr1 = date.format(dateTimeFormatter);
+```
 
 DateTimeFormatterBuilder
+
+- 更加细粒度的控制日期的格式
 

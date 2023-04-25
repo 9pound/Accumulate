@@ -1,5 +1,7 @@
 # Nacos
 
+## 概述
+
 注册中心：类似于目录服务的作用、主要用来存储服务信息、URL、路由信息
 
 服务注册和服务发现
@@ -19,9 +21,37 @@
 
 
 
+## 使用
+
+三种部署模式，单机、集群、多集群
 
 
-配置中心
+
+### 启动
+
+```
+#单机
+sh startup.sh -m standalone
+
+startup.cmd -m standalone
+
+#集群
+sh startup.sh 
+
+startup.cmd -m cluster
+```
+
+
+
+
+
+## 服务注册与发现
+
+
+
+
+
+## 配置
 
 
 
@@ -88,3 +118,20 @@ spring:
         file-extension: yaml # 配置内容的数据格式，默认为 properties
         namespace: 450a3f07-08ee-49f6-8213-9b04b06cd3cc # 对应 dev 环境
 ```
+
+
+
+## 高可用
+
+raft 算法
+
+## 实现原理
+
+#### 架构图
+
+五个组件：
+
+
+
+
+

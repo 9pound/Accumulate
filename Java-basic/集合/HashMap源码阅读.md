@@ -202,7 +202,7 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
         return (e = getNode(hash(key), key)) == null ? null : e.value;
     }
 
-    final Node<K,V> getNode(int hash, Object key) {
+    final Node<K,V> (int hash, Object key) {
         Node<K,V>[] tab; 
         Node<K,V> first, e; 
         int n; K k;
@@ -283,6 +283,7 @@ final Node<K,V>[] resize() {
             for (int j = 0; j < oldCap; ++j) {
                 Node<K,V> e;
                 if ((e = oldTab[j]) != null) {
+                    // 取旧数组
                     oldTab[j] = null;
                     if (e.next == null)
                         newTab[e.hash & (newCap - 1)] = e;
