@@ -2,6 +2,50 @@
 
 
 
+git status  
+
+显示 工作目录和暂存区的状态
+
+
+
+working directory
+
+git add 
+
+来获取工作目录中的内容，并将其复制到索引中
+
+
+
+git commit 
+
+它会取得索引中的内容并将它保存为一个永久的快照， 然后创建一个指向该快照的提
+
+交对象，最后更新 master 来指向本次提交
+
+
+
+git reset
+
+本质是撤销 git commit 操作
+
+
+
+reset 命令会以特定的顺序重写这三棵树，在你指定以下选项时停止：
+
+1. 移动 HEAD 分支的指向 （若指定了 *--soft*，则到此停止）
+2. 使索引看起来像 HEAD （若未指定 *--hard*，则到此停止）
+3. 使工作目录看起来像索引
+
+--soft  移动head 回滚commit
+
+--mixed 更新index 回滚 add commit
+
+--hard  更新工作目录  强制覆盖工作目录
+
+
+
+
+
 ## 打标签
 
 ### 轻量标签
