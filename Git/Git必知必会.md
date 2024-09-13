@@ -2,6 +2,10 @@
 
 
 
+
+
+
+
 git status  
 
 显示 工作目录和暂存区的状态
@@ -107,5 +111,49 @@ git checkout -b version2 v2.0.0
 
 
 
+```
+
+
+
+## 远程仓库
+
+```shell
+#查看远程仓库地址
+git remote -v
+origin  git@github.com:jekip/naive-ui-admin.git (fetch)
+origin  git@github.com:jekip/naive-ui-admin.git (push) 
+
+#设置远程仓库地址
+git remote set-url origin git@github.com:9pound/naive-ui-admin.git
+
+```
+
+
+
+## 撤销操作
+
+```shell
+#取消暂存(add)
+git reset HEAD <file> 
+
+ 
+#撤销对文件的修改、对file 的本地修改都会消失
+git checkout --<file>
+
+
+#补充commit
+git commit --amend
+```
+
+### 回退
+
+```shell
+
+
+
+
+
+#线上回退了、强制更新本地分支
+git reset --hard origin/master
 ```
 
